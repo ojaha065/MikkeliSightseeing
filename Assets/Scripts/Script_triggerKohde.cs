@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class Script_triggerKohde : MonoBehaviour
 {
@@ -9,11 +10,13 @@ public class Script_triggerKohde : MonoBehaviour
     public int kohdeID = -1;
 
     private Text teksti;
+    private Script_controller controller;
 
     // Start is called before the first frame update
     void Start()
     {
         teksti = puhekupla.transform.GetChild(0).GetComponent<Text>();
+        controller = GameObject.Find("Controller").GetComponent<Script_controller>();
         if(kohdeID != 0)
         {
             this.gameObject.SetActive(false);
@@ -37,10 +40,12 @@ public class Script_triggerKohde : MonoBehaviour
                 case 0:
                     Debug.Log("Tämä on kohde 0");
                     teksti.text = "Mikkelin matkakeskus ja linja-autoasema. Bussini seuraavaan kohteeseen lähtee täältä, mutta minulla on vielä hetki aikaa. Ensimmäiseksi voisinkin käydä vaikka torilla.";
+                    controller.timer += 50;
                     break;
                 case 1:
                     Debug.Log("Tämä on kohde 1");
                     teksti.text = "Mikkelin tori. Täällä riittää menoa ja tapahtumia ympäri vuoden. Tänään on kuitenkin hiljaista. Kuuluisa Eepin Grillikin muutti toisaalle. Taidampa silti napata vähän hiukopalaa Suomi Grilliltä.";
+                    controller.timer += 30;
                     break;
                 case 2:
                     Debug.Log("Tämä on kohde 2");
@@ -49,14 +54,16 @@ public class Script_triggerKohde : MonoBehaviour
                 case 3:
                     Debug.Log("Tämä on kohde 3");
                     teksti.text = "Mikkelin kaupungintalo. Se kuulemma rakennettu jo vuonna 1912. Viimeisenä kohteena voisin käydä tuomiokirkossa.";
+                    controller.timer += 50;
                     break;
                 case 4:
                     Debug.Log("Tämä on kohde 4");
                     teksti.text = "On sillä kokoa. Nyt pitääkin olla selfie...\n\n Voihan lorem, kello onkin jo paljon. Nyt tuli kiire! Äkkiä takaisin linja-autoasemalle!";
+                    controller.timer = 50;
                     break;
                 case 5:
-                    Debug.Log("Tämä on kohde maali");
-                    teksti.text = "";
+                    Debug.Log("Tämä on maali");
+                    SceneManager.LoadScene("Scene_youWin");
                     break;
                 default:
                     Debug.LogWarning("Pelaaja törmäsi kohteeseen jolla ei ole käsittelijää");

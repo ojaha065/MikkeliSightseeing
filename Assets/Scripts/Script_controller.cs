@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Script_controller : MonoBehaviour
 {
+    public GameObject puhekupla;
+
     private GameObject FPS_laskuri;
 
     // Start is called before the first frame update
@@ -16,7 +18,11 @@ public class Script_controller : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.F))
+        if (Input.GetKeyDown(KeyCode.X))
+        {
+            puhekupla.SetActive(false);
+        }
+        else if (Input.GetKeyDown(KeyCode.F))
         {
             FPS_laskuri.SetActive(!FPS_laskuri.activeSelf);
         }

@@ -4756,4 +4756,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a00dd1c9bc61ce347a4eec9d03d4dd0c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  puhekupla: {fileID: 0}
   kohdeID: 0

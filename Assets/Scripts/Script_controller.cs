@@ -10,14 +10,25 @@ public class Script_controller : MonoBehaviour
     public float timer;
 
     private GameObject FPS_laskuri;
+    private GameObject minimap;
+    private GameObject player;
+    private GameObject kartta_help;
     private Text timerText;
+
+    // Äänet
+    private AudioSource minimapSound;
 
     // Start is called before the first frame update
     void Start()
     {
         FPS_laskuri = GameObject.Find("FPS-laskuri_panel");
         FPS_laskuri.SetActive(false);
+        minimap = GameObject.Find("Minimap");
+        minimap.SetActive(false);
+        player = GameObject.FindGameObjectWithTag("Player");
         timerText = GameObject.Find("Timer").GetComponent<Text>();
+        minimapSound = this.GetComponents<AudioSource>()[1];
+        kartta_help = GameObject.Find("kartta_help");
     }
 
     // Update is called once per frame
@@ -32,6 +43,12 @@ public class Script_controller : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.X))
         {
             puhekupla.SetActive(false);
+        }
+        else if (Input.GetKeyDown(KeyCode.M))
+        {
+            minimapSound.Play();
+            kartta_help.SetActive(false);
+            minimap.SetActive(!minimap.activeSelf);
         }
         else if (Input.GetKeyDown(KeyCode.F))
         {
@@ -66,5 +83,7 @@ public class Script_controller : MonoBehaviour
             UnityEditor.EditorApplication.isPaused = true;
         }
 #endif
+
+        minimap.transform.position = new Vector3(player.transform.position.x,minimap.transform.position.y, player.transform.position.z);
     }
 }

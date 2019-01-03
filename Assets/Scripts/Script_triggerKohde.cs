@@ -29,6 +29,11 @@ public class Script_triggerKohde : MonoBehaviour
         
     }
 
+    private void FixedUpdate()
+    {
+        this.transform.Rotate(0f,1f,0f);
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.tag.Equals("Player"))
@@ -49,17 +54,17 @@ public class Script_triggerKohde : MonoBehaviour
                     break;
                 case 2:
                     Debug.Log("Tämä on kohde 2");
-                    teksti.text = "Aah, nyt jaksaa taas. Kaupungintalo onkin ihan tuossa lähellä.";
+                    teksti.text = "Aah, nyt jaksaa taas. Kaupungintalo onkin ihan tuossa lähellä, käympä katsomassa sitä.";
                     break;
                 case 3:
                     Debug.Log("Tämä on kohde 3");
-                    teksti.text = "Mikkelin kaupungintalo. Se kuulemma rakennettu jo vuonna 1912. Viimeisenä kohteena voisin käydä tuomiokirkossa.";
+                    teksti.text = "Mikkelin kaupungintalo. Se on kuulemma rakennettu jo vuonna 1912. Viimeisenä kohteena voisin käydä tuomiokirkossa.";
                     controller.timer += 50;
                     break;
                 case 4:
                     Debug.Log("Tämä on kohde 4");
-                    teksti.text = "On sillä kokoa. Nyt pitääkin olla selfie...\n\n Voihan lorem, kello onkin jo paljon. Nyt tuli kiire! Äkkiä takaisin linja-autoasemalle!";
-                    controller.timer = 50;
+                    teksti.text = "On sillä kokoa. Nyt pitääkin olla selfie...\n\n Kylläpä aika rientää. Nyt tuli kiire! Äkkiä takaisin linja-autoasemalle!";
+                    controller.timer = 80;
                     break;
                 case 5:
                     Debug.Log("Tämä on maali");

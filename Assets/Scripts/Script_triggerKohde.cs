@@ -59,7 +59,7 @@ public class Script_triggerKohde : MonoBehaviour
                     //Debug.Log("Tämä on kohde 1");
                     sounds[1].Play();
                     teksti.text = "Mikkelin tori. Täällä riittää menoa ja tapahtumia ympäri vuoden. Tänään on kuitenkin hiljaista. Kuuluisa Eepin Grillikin muutti toisaalle. Taidampa silti napata vähän hiukopalaa Suomi Grilliltä.";
-                    controller.timer += 30;
+                    controller.timer += 60;
                     break;
                 case 2:
                     //Debug.Log("Tämä on kohde 2");
@@ -76,8 +76,8 @@ public class Script_triggerKohde : MonoBehaviour
                 case 4:
                     //Debug.Log("Tämä on kohde 4");
                     sounds[1].Play();
-                    teksti.text = "On sillä kokoa. Nyt pitääkin ottaa selfie...\n\n Kylläpä aika rientää. Nyt tuli kiire! Äkkiä takaisin linja-autoasemalle!";
-                    controller.timer = 90;
+                    teksti.text = "On se näyttävä. Nyt pitääkin ottaa selfie...\n\nKylläpä aika rientää. Nyt tuli kiire! Äkkiä takaisin linja-autoasemalle!";
+                    controller.timer = 95;
                     sounds[3].Play();
                     break;
                 case 5:
@@ -91,7 +91,7 @@ public class Script_triggerKohde : MonoBehaviour
             }
 
             puhekupla.SetActive(true);
-            int next = (kohdeID < 4) ? 1 : 0;
+            int next = (kohdeID <= 4) ? 1 : 0;
             this.transform.parent.transform.GetChild(this.kohdeID + next).gameObject.SetActive(true);
             this.gameObject.SetActive(false);
         }

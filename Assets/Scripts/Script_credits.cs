@@ -31,6 +31,12 @@ public class Script_credits : MonoBehaviour
             Application.OpenURL("about:blank");
 #endif
         }
-        rullaa.transform.Translate(0f,1f,0f);
+        else if (Input.GetKey(KeyCode.Space)){
+            rullaa.transform.Translate(0f, 3f, 0f);
+        }
+        else
+        {
+            rullaa.transform.Translate(0f, 1f, 0f);
+        }
     }
 }

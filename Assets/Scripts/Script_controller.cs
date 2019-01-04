@@ -84,6 +84,8 @@ public class Script_controller : MonoBehaviour
         }
 #endif
 
-        minimap.transform.position = new Vector3(player.transform.position.x,minimap.transform.position.y, player.transform.position.z);
+        minimap.transform.position = new Vector3(player.transform.position.x,200f,player.transform.position.z);
+        Quaternion q = Quaternion.Euler(90f,player.transform.rotation.eulerAngles.y,player.transform.rotation.eulerAngles.z);
+        minimap.transform.rotation = q;
     }
 }

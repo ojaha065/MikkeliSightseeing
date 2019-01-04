@@ -7,16 +7,21 @@ using UnityEngine.SceneManagement;
 public class Script_triggerKohde : MonoBehaviour
 {
     public GameObject puhekupla;
+    public GameObject tehoste;
     public int kohdeID = -1;
 
+    private Transform marker;
     private Text teksti;
     private Script_controller controller;
+    private AudioSource[] sounds;
 
     // Start is called before the first frame update
     void Start()
     {
+        marker = this.transform.GetChild(1);
         teksti = puhekupla.transform.GetChild(0).GetComponent<Text>();
         controller = GameObject.Find("Controller").GetComponent<Script_controller>();
+        sounds = GameObject.FindGameObjectWithTag("Player").GetComponents<AudioSource>();
         if(kohdeID != 0)
         {
             this.gameObject.SetActive(false);
@@ -31,52 +36,63 @@ public class Script_triggerKohde : MonoBehaviour
 
     private void FixedUpdate()
     {
-        this.transform.Rotate(0f,1f,0f);
+        marker.Rotate(1f,1f,1f);
     }
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.tag.Equals("Player"))
         {
-            Debug.Log("Pelaaja törmäsi triggeriin");
+            //Debug.Log("Pelaaja törmäsi triggeriin");
+            GameObject apu = Instantiate(tehoste,this.transform.position,Quaternion.Euler(-90f,0f,0f));
+            Destroy(apu, 2f);
 
             switch (kohdeID)
             {
                 case 0:
-                    Debug.Log("Tämä on kohde 0");
-                    teksti.text = "Mikkelin matkakeskus ja linja-autoasema. Bussini seuraavaan kohteeseen lähtee täältä, mutta minulla on vielä hetki aikaa. Ensimmäiseksi voisinkin käydä vaikka torilla.";
+                    //Debug.Log("Tämä on kohde 0");
+                    sounds[1].Play();
+                    teksti.text = "Mikkelin matkakeskus ja linja-autoasema. Bussini seuraavaan kohteeseen lähtee täältä, mutta minulla on vielä hetki aikaa. Odotellessani voisinkin käydä vaikka torilla.";
                     controller.timer += 50;
                     break;
                 case 1:
-                    Debug.Log("Tämä on kohde 1");
+                    //Debug.Log("Tämä on kohde 1");
+                    sounds[1].Play();
                     teksti.text = "Mikkelin tori. Täällä riittää menoa ja tapahtumia ympäri vuoden. Tänään on kuitenkin hiljaista. Kuuluisa Eepin Grillikin muutti toisaalle. Taidampa silti napata vähän hiukopalaa Suomi Grilliltä.";
                     controller.timer += 30;
                     break;
                 case 2:
-                    Debug.Log("Tämä on kohde 2");
+                    //Debug.Log("Tämä on kohde 2");
+                    Destroy(apu);
+                    sounds[2].Play();
                     teksti.text = "Aah, nyt jaksaa taas. Kaupungintalo onkin ihan tuossa lähellä, käympä katsomassa sitä.";
                     break;
                 case 3:
-                    Debug.Log("Tämä on kohde 3");
+                    //Debug.Log("Tämä on kohde 3");
+                    sounds[1].Play();
                     teksti.text = "Mikkelin kaupungintalo. Se on kuulemma rakennettu jo vuonna 1912. Viimeisenä kohteena voisin käydä tuomiokirkossa.";
-                    controller.timer += 50;
+                    controller.timer += 100;
                     break;
                 case 4:
-                    Debug.Log("Tämä on kohde 4");
-                    teksti.text = "On sillä kokoa. Nyt pitääkin olla selfie...\n\n Kylläpä aika rientää. Nyt tuli kiire! Äkkiä takaisin linja-autoasemalle!";
-                    controller.timer = 80;
+                    //Debug.Log("Tämä on kohde 4");
+                    sounds[1].Play();
+                    teksti.text = "On sillä kokoa. Nyt pitääkin ottaa selfie...\n\n Kylläpä aika rientää. Nyt tuli kiire! Äkkiä takaisin linja-autoasemalle!";
+                    controller.timer = 90;
+                    sounds[3].Play();
                     break;
                 case 5:
-                    Debug.Log("Tämä on maali");
+                    //Debug.Log("Tämä on maali");
+                    teksti.text = "Huh!";
                     SceneManager.LoadScene("Scene_youWin");
                     break;
                 default:
-                    Debug.LogWarning("Pelaaja törmäsi kohteeseen jolla ei ole käsittelijää");
+                    //Debug.LogWarning("Pelaaja törmäsi kohteeseen jolla ei ole käsittelijää");
                     break;
             }
 
             puhekupla.SetActive(true);
-            this.transform.parent.transform.GetChild(this.kohdeID + 1).gameObject.SetActive(true);
+            int next = (kohdeID < 4) ? 1 : 0;
+            this.transform.parent.transform.GetChild(this.kohdeID + next).gameObject.SetActive(true);
             this.gameObject.SetActive(false);
         }
     }

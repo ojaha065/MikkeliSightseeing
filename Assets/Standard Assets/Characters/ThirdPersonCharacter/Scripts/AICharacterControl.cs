@@ -20,13 +20,15 @@ namespace UnityStandardAssets.Characters.ThirdPerson
             return navHit.position;
         }
 
-        private int wanderTimer = 10000;
+        private GameObject player;
+        private int wanderTimer = 1000;
 
         private void Start()
         {
             // get the components on the object we need ( should not be null due to require component so no need to check )
             agent = GetComponentInChildren<UnityEngine.AI.NavMeshAgent>();
             character = GetComponent<ThirdPersonCharacter>();
+            player = GameObject.FindGameObjectWithTag("Player");
 
 	        agent.updateRotation = false;
 	        agent.updatePosition = true;
@@ -35,10 +37,27 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 
         private void Update()
         {
-            if (agent.remainingDistance > agent.stoppingDistance)
-                character.Move(agent.desiredVelocity, false, false);
+            if (Vector3.Distance(this.transform.position, player.transform.position) > 1000)
+            {
+                agent.isStopped = true;
+            }
+            else if(Vector3.Distance(this.transform.position,player.transform.position) > 250)
+            {
+                agent.isStopped = false;
+                wanderTimer = 0;
+                agent.SetDestination(player.transform.position);
+                Vector3 speed = new Vector3(agent.desiredVelocity.x * 2, agent.desiredVelocity.y * 2, agent.desiredVelocity.z * 2);
+                character.Move(speed, false, false);
+            }
+            else if (agent.remainingDistance > agent.stoppingDistance)
+            {
+                agent.isStopped = false;
+                Vector3 speed = new Vector3(agent.desiredVelocity.x / 2, agent.desiredVelocity.y / 2 , agent.desiredVelocity.z / 2);
+                character.Move(speed, false, false);
+            }
             else
             {
+                agent.isStopped = false;
                 character.Move(Vector3.zero, false, false);
             }
                 
@@ -47,7 +66,7 @@ namespace UnityStandardAssets.Characters.ThirdPerson
         private void FixedUpdate()
         {
             wanderTimer++;
-            if(wanderTimer >= 10000)
+            if(wanderTimer >= 1000)
             {
                 wanderTimer = 0;
                 Vector3 newPos = RandomNavSphere(transform.position, 1000, -1);

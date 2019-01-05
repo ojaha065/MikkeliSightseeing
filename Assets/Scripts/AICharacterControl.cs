@@ -37,11 +37,11 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 
         private void Update()
         {
-            if (Vector3.Distance(this.transform.position, player.transform.position) > 1000)
+            if (Vector3.Distance(this.transform.position, player.transform.position) > 250)
             {
                 agent.isStopped = true;
             }
-            else if(Vector3.Distance(this.transform.position,player.transform.position) > 250)
+            else if(Vector3.Distance(this.transform.position,player.transform.position) > 100)
             {
                 agent.isStopped = false;
                 wanderTimer = 0;

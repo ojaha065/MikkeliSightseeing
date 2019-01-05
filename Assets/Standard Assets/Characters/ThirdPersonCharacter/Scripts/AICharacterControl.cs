@@ -21,7 +21,7 @@ namespace UnityStandardAssets.Characters.ThirdPerson
         }
 
         private GameObject player;
-        private int wanderTimer = 1000;
+        private int wanderTimer = 5000;
 
         private void Start()
         {
@@ -66,7 +66,7 @@ namespace UnityStandardAssets.Characters.ThirdPerson
         private void FixedUpdate()
         {
             wanderTimer++;
-            if(wanderTimer >= 1000)
+            if(wanderTimer >= 5000)
             {
                 wanderTimer = 0;
                 Vector3 newPos = RandomNavSphere(transform.position, 1000, -1);

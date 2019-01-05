@@ -8,6 +8,7 @@ public class Script_triggerKohde : MonoBehaviour
 {
     public GameObject puhekupla;
     public GameObject tehoste;
+    public Material twilight;
     public int kohdeID = -1;
 
     private Transform marker;
@@ -76,6 +77,8 @@ public class Script_triggerKohde : MonoBehaviour
                 case 4:
                     //Debug.Log("Tämä on kohde 4");
                     sounds[1].Play();
+                    Camera.main.GetComponent<Skybox>().material = twilight;
+                    GameObject.Find("Directional Light").GetComponent<Light>().intensity = 0.15f;
                     teksti.text = "On se näyttävä. Nyt pitääkin ottaa selfie...\n\nKylläpä aika rientää. Nyt tuli kiire! Äkkiä takaisin linja-autoasemalle!";
                     controller.timer = 95;
                     sounds[3].Play();

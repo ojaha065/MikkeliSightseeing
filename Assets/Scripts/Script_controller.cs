@@ -38,6 +38,11 @@ public class Script_controller : MonoBehaviour
         timer -= Time.deltaTime;
         string minutes = Mathf.Floor(timer / 60).ToString("00");
         string seconds = (timer % 60).ToString("00");
+        if(seconds.Equals("60"))
+        {
+            seconds = "59";
+            timer--;
+        }
         timerText.text = string.Format("Aikaa jäljellä: {0}:{1}",minutes,seconds);
 
         if (Input.GetKeyDown(KeyCode.X))

@@ -147,7 +147,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 48, y: -1436}
+  m_AnchoredPosition: {x: 48, y: -1357}
   m_SizeDelta: {x: 141.54, y: 193.45}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &295755501
@@ -300,7 +300,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 55.7, y: -1165}
+  m_AnchoredPosition: {x: 55.7, y: -1134}
   m_SizeDelta: {x: 310.6, y: 187}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &856283495
@@ -1147,7 +1147,7 @@ MonoBehaviour:
 
     by Mativve from freesound.org
 
-    This work is licensed under the Cretive Commons Attribution 3.0 license'
+    This work is licensed under the Creative Commons Attribution 3.0 license'
 --- !u!222 &1897911592
 CanvasRenderer:
   m_ObjectHideFlags: 0

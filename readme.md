@@ -1,7 +1,7 @@
 # Peliohjelmoinnin henkilökohtainen 2D-harjoitus
 
-Jani Haiko (D5209)  
-TKMI17SP  
+Jani Haiko  
+Kaakkois-Suomen Ammattikorkeakoulu  
 
 Pelin ideana on Mikkelin kaupunkikeskutaan tutustuminen Mikkelin kaupungin tarjoaman 3D-mallin avulla.  
 
@@ -10,5 +10,3 @@ Ongelmaksi muodostui se, että 3D-malli on selvästikin tarkoitettu vain yleissi
 ## Joitakin huomioita:
 * FPS-laskurin saa esille F-näppäimellä.
 * Lopputekstien rullaamisnopeutta voi kasvattaa välilyönnillä.
-
-GitHub-repo: https://github.com/ojaha065/MikkeliSightseeing
